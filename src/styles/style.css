@@ -1,0 +1,44 @@
+.appDiv{
+    width:700px;
+}
+.display{
+       height: 100px;
+    background-color: gray;
+    color: #fff;
+    font-weight: 900;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.panel {
+}
+.group {
+    height:100px;
+    display:flex;
+}
+.btn {
+    width:25%;
+    text: #000;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+/* .zero{
+    width: calc(50% + 4px) !important;
+    display: flex;
+}
+.zero > .btn {
+    width:100%;
+} */
+.btnWide {
+       width:50%;
+    text: #000;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
