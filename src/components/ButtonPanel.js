@@ -2,6 +2,7 @@ import React  from 'react';
 import Button from './Buttons'
 
 class ButtonsPanel extends React.Component {
+
   render() {
     return (<div className="panel">
       <div className="group">
@@ -29,7 +30,7 @@ class ButtonsPanel extends React.Component {
         <Button name="/"/></div>
       <div className="group">
         <Button className="zero" name="0" wide={true}/>
-        <Button name=","/>
+        <Button name="."/>
         <Button name="="/>
       </div>
     </div>)

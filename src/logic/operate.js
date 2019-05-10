@@ -1,17 +1,22 @@
 import Big from 'big.js';
 
 const operate = (numberOne, numberTwo, operation) => {
+  numberOne = Big(numberOne);
+  numberTwo = Big(numberTwo);
+
   switch (operation) {
+    default:
+      break;
     case '+':
-      return Big(numberOne + numberTwo);
+      return Number(numberOne.plus(numberTwo));
     case '-':
-      return Big(numberOne - numberTwo);
+      return Number(numberOne.minus(numberTwo));
     case 'X':
-      return Big(numberOne * numberTwo);
+      return Number(numberOne.times(numberTwo));
     case '%':
-      return Big(numberOne - numberTwo);
+      return Number(numberOne.mod(numberTwo));
     case '/':
-      return Big(numberOne / numberTwo);
+      return Number(numberOne.div(numberTwo));
   }
 };
 
