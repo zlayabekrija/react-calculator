@@ -2,38 +2,49 @@ import operate from './operate';
 
 const calculate = ((data, buttonName) => {
   let {total, next, operation} = data;
-
   switch (buttonName) {
-    default:
-      break;
     case 'AC':
       total = '';
       next = '';
       operation = '';
       break;
     case '+/-':
-      total = total * -1;
-      next = next * -1;
+      total = Number(total);
+      total = String(total * -1);
       break;
     case '%':
+      total = operate(total, 100, buttonName);
+      break;
     case '+':
     case 'X':
     case '-':
     case '/':
-      operation = buttonName;
+      if (operation === '' && next === ''){
+        operation = buttonName;
+      }
       if (next !== ''){
-      total = operate(total = 0, next, buttonName);
+        total = Number(total);
+        next = Number(next);
+        total = operate(total, next, operation);
+        operation = buttonName;
       }
       next = '';
       break;
     case '=':
       if (next !== ''){
-        total = operate(total = 0, next, operation);
+        total = Number(total);
+        total = operate(total, next, operation);
       }
       operation = '';
       next = '';
       break;
     case '.':
+      if (operation === '' && total.indexOf('.') !== -1){
+        break;
+      }
+      if (operation !== '' && next.indexOf('.') !== -1){
+        break;
+      }
     case '0':
     case '1':
     case '2':
@@ -44,11 +55,20 @@ const calculate = ((data, buttonName) => {
     case '7':
     case '8':
     case '9':
-      next += buttonName;
-      if (total.length < 10 && operation === ''){
-      total += next;
-      next = ''
-    }
+      if (total[0] === '0' && total[1] !== '.' && total.length > 0){
+        total = buttonName;
+      } else if (next[0] === '0' && next[1] !== '.' && next.length > 0){
+        next = buttonName;
+      } else {
+        next += buttonName;
+      }
+      if (operation === ''){
+        total += next;
+        next = '';
+      }
+      break;
+    default:
+      total = 'ERROR';
       break;
   }
   return {total, next, operation};

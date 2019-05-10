@@ -8,15 +8,14 @@ const operate = (numberOne, numberTwo, operation) => {
     default:
       break;
     case '+':
-      return Number(numberOne.plus(numberTwo));
+      return numberOne.plus(numberTwo).valueOf();
     case '-':
-      return Number(numberOne.minus(numberTwo));
+      return numberOne.minus(numberTwo).valueOf();
     case 'X':
-      return Number(numberOne.times(numberTwo));
-    case '%':
-      return Number(numberOne.mod(numberTwo));
+      return numberOne.times(numberTwo).valueOf();
     case '/':
-      return Number(numberOne.div(numberTwo));
+    case '%':
+      return numberOne.div(numberTwo).valueOf();
   }
 };
 

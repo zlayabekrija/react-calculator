@@ -20,29 +20,23 @@ class App extends React.Component {
   handleClick = (e) => {
     let buttonName;
     if (e.target.className !== 'display'){
-
       buttonName = e.target.textContent;
-
       let data = calculate(this.state, buttonName);
-
       this.setState({
         total: data.total,
         next: data.next,
         operation: data.operation
       });
-
-      console.log(this.state);
     }
   };
 
   render() {
     let {total, next, operation} = this.state;
-    // let firstVal = total.toString() || '0';
     let secVal = next || '';
 
     return (
       <div className="appDiv">
-        <Display result={total} sign={operation} next={secVal} />
+        <Display result={total} sign={operation} next={secVal}/>
         <ButtonsPanel onClick={this.handleClick}/>
       </div>
     )
