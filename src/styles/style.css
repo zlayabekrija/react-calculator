@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 .appDiv {
     width: 700px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .display {
     height: 100px;
     background-color: gray;
+    border-radius: 3px;
     color: #fff;
     font-weight: 900;
+    font-size: 3em;
     text-align: right;
     box-sizing: border-box;
     padding: 5px;
@@ -22,16 +26,23 @@
 
 .btn {
     width: 25%;
-    border: 1px solid #d1d1d1;
+    border: 1px solid #000;
+    border-radius: 3px;
     align-items: center;
     justify-content: center;
     display: flex;
 }
 
 .btnWide {
-    width: 50%;
-    border: 1px solid #d1d1d1;
+    width: calc(50% + 2px);
+    border: 1px solid #000;
+    border-radius: 3px;
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+.btn:hover,
+.btnWide:hover{
+    background-color: rgb(148, 141, 141) !important;
 }

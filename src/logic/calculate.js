@@ -45,6 +45,7 @@ const calculate = ((data, buttonName) => {
       if (operation !== '' && next.indexOf('.') !== -1){
         break;
       }
+      break;
     case '0':
     case '1':
     case '2':

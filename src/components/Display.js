@@ -2,7 +2,8 @@ import React     from 'react';
 import PropTypes from 'prop-types'
 
 const Display = (props) => {
-  return (<div className="display">{props.result} {props.sign} {props.next}</div>)
+  let result = props.result === '' ? '0' : props.result;
+  return (<div className="display">{result} {props.sign} {props.next}</div>)
 };
 
 Display.defaultProps = {result: '0'};
