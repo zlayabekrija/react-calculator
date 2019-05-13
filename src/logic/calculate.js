@@ -8,7 +8,6 @@ const calculate = ((data, buttonName) => {
   }
 
   if (operation === '=' && ['0','1','2','3','4','5','6','7','8','9'].includes(buttonName)) {
-    console.log('run');
     total = '';
     next = '';
     operation = '';
@@ -61,15 +60,13 @@ const calculate = ((data, buttonName) => {
       next = '';
       break;
     case '.':
-      console.log('d',data );
-      if (total.indexOf('.') !== -1 && buttonName==='.'){
+      if (total.indexOf('.') !== -1 && buttonName==='.' && next === ''){
         break;
       }
       if (next.indexOf('.') !== -1 && buttonName==='.'){
         break;
       }
-      break;
-    case '0':
+    case '0': 
     case '1':
     case '2':
     case '3':
@@ -78,8 +75,8 @@ const calculate = ((data, buttonName) => {
     case '6':
     case '7':
     case '8':
-    case '9':
-
+    case '9': 
+  
       if (total[0] === '0' && total[1] !== '.' && total.length > 0){
         total = buttonName;
       } else if (next[0] === '0' && next[1] !== '.' && next.length > 0){
