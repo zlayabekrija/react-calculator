@@ -1,40 +1,40 @@
 import React  from 'react';
 import Button from './Buttons'
 
-class ButtonsPanel extends React.Component {
-
-  render() {
+const ButtonsPanel = props => {
+  const handleClick = (name) =>  props.clickHandler(name)
+  
     return (<div className="panel">
       <div className="group">
-        <Button name="AC" color="#ccc"/>
-        <Button name="+/-" color="#ccc"/>
-        <Button name="%" color="#ccc"/>
-        <Button name="+"/>
+        <Button name="AC" color="#ccc" clickHandler={handleClick}/>
+        <Button name="+/-" color="#ccc" clickHandler={handleClick} />
+        <Button name="%" color="#ccc" clickHandler={handleClick}/>
+        <Button name="+" clickHandler={handleClick}/>
       </div>
       <div className="group">
-        <Button name="7" color="#ccc"/>
-        <Button name="8" color="#ccc"/>
-        <Button name="9" color="#ccc"/>
-        <Button name="X"/>
+        <Button name="7" color="#ccc" clickHandler={handleClick}/>
+        <Button name="8" color="#ccc" clickHandler={handleClick}/>
+        <Button name="9" color="#ccc" clickHandler={handleClick}/>
+        <Button name="X" clickHandler={handleClick}/>
       </div>
       <div className="group">
-        <Button name="4" color="#ccc"/>
-        <Button name="5" color="#ccc"/>
-        <Button name="6" color="#ccc"/>
-        <Button name="-" />
+        <Button name="4" color="#ccc" clickHandler={handleClick}/>
+        <Button name="5" color="#ccc" clickHandler={handleClick}/>
+        <Button name="6" color="#ccc" clickHandler={handleClick}/>
+        <Button name="-" clickHandler={handleClick}/>
       </div>
       <div className="group">
-        <Button name="1" color="#ccc"/>
-        <Button name="2" color="#ccc"/>
-        <Button name="3" color="#ccc"/>
-        <Button name="/"/></div>
+        <Button name="1" color="#ccc" clickHandler={handleClick}/>
+        <Button name="2" color="#ccc" clickHandler={handleClick}/>
+        <Button name="3" color="#ccc" clickHandler={handleClick}/>
+        <Button name="/" clickHandler={handleClick}/></div>
       <div className="group">
-        <Button className="zero" name="0" wide={true} color="#ccc"/>
-        <Button name="." color="#ccc" />
-        <Button name="="/>
+        <Button className="zero" name="0" wide={true} color="#ccc" clickHandler={handleClick}/>
+        <Button name="." color="#ccc" clickHandler={handleClick}/>
+        <Button name="=" clickHandler={handleClick}/>
       </div>
     </div>)
   }
-}
+
 
 export default ButtonsPanel;
