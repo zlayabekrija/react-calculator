@@ -2,6 +2,19 @@ import operate from './operate';
 
 const calculate = ((data, buttonName) => {
   let {total, next, operation} = data;
+
+  if (total === 'ERROR') {
+    total = '';
+  }
+
+  if (operation === '=' && ['0','1','2','3','4','5','6','7','8','9'].includes(buttonName)) {
+    total = '';
+    next = '';
+    operation = '';
+  } else if (operation === '=' && ['%','+','-','X','/'].includes(buttonName)) {
+    operation = buttonName;
+  }
+  
   switch (buttonName) {
     case 'AC':
       total = '';
@@ -25,7 +38,11 @@ const calculate = ((data, buttonName) => {
       if (next !== ''){
         total = Number(total);
         next = Number(next);
-        total = operate(total, next, operation);
+        Number(operate(total, next, operation)) % 1 === 0 ? total = operate(total, next, operation):
+          total = Number(operate(total, next, operation)).toFixed(6).toString();
+        if (isNaN(total)) {
+          total = 'ERROR';
+        }
         operation = buttonName;
       }
       next = '';
@@ -33,20 +50,23 @@ const calculate = ((data, buttonName) => {
     case '=':
       if (next !== ''){
         total = Number(total);
-        total = operate(total, next, operation);
+        Number(operate(total, next, operation)) % 1 === 0 ? total = operate(total, next, operation):
+         total = Number(operate(total, next, operation)).toFixed(6).toString();
       }
-      operation = '';
+      if (isNaN(total)) {
+        total = 'ERROR';
+      }
+      operation = '=';
       next = '';
       break;
     case '.':
-      if (operation === '' && total.indexOf('.') !== -1){
+      if (total.indexOf('.') !== -1 && buttonName==='.' && next === ''){
         break;
       }
-      if (operation !== '' && next.indexOf('.') !== -1){
+      if (next.indexOf('.') !== -1 && buttonName==='.'){
         break;
       }
-      break;
-    case '0':
+    case '0': 
     case '1':
     case '2':
     case '3':
@@ -55,7 +75,8 @@ const calculate = ((data, buttonName) => {
     case '6':
     case '7':
     case '8':
-    case '9':
+    case '9': 
+  
       if (total[0] === '0' && total[1] !== '.' && total.length > 0){
         total = buttonName;
       } else if (next[0] === '0' && next[1] !== '.' && next.length > 0){
@@ -69,7 +90,6 @@ const calculate = ((data, buttonName) => {
       }
       break;
     default:
-      total = 'ERROR';
       break;
   }
   return {total, next, operation};

@@ -1,33 +1,26 @@
 import React        from 'react';
-import ReactDOM     from 'react-dom';
 import '../styles/style.css';
 import Display      from './Display';
 import ButtonsPanel from './ButtonPanel';
 import calculate    from '../logic/calculate';
 
 class App extends React.Component {
-
-  state = {
+  constructor(props){
+    super(props)
+  this.state = {
     total: '',
     next: '',
     operation: ''
   };
-
-  componentDidMount() {
-    ReactDOM.findDOMNode(this).addEventListener('click', this.handleClick);
-  }
-
-  handleClick = (e) => {
-    let buttonName;
-    if (e.target.className !== 'display'){
-      buttonName = e.target.textContent;
+  this.handleClick = this.handleClick.bind(this)
+}
+  handleClick = (buttonName) => {
       let data = calculate(this.state, buttonName);
       this.setState({
         total: data.total,
         next: data.next,
         operation: data.operation
       });
-    }
   };
 
   render() {
@@ -37,7 +30,7 @@ class App extends React.Component {
     return (
       <div className="appDiv">
         <Display result={total} sign={operation} next={secVal}/>
-        <ButtonsPanel onClick={this.handleClick}/>
+        <ButtonsPanel clickHandler={this.handleClick}/>
       </div>
     )
   }
