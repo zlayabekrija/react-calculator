@@ -10,7 +10,7 @@
 
 - run npm start to run app in localhost 
 
-- there is live version on [Heroku](https://react-calculator-inzi-zlaya.herokuapp.com/)  
+- there is live version on [Netlify](https://zlaja-inzi-inzi-zlaja-calculator.netlify.com/)  
 
 Feel free to fork, comment, suggest...
 
