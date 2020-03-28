@@ -1,8 +1,8 @@
 import React  from 'react';
 import Button from './Buttons'
 
-const ButtonsPanel = props => {
-  const handleClick = (name) =>  props.clickHandler(name)
+const ButtonsPanel = ({clickHandler}) => {
+  const handleClick = (name) => clickHandler(name)
   
     return (<div className="panel">
       <div className="group">

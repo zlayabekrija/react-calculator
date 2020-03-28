@@ -1,8 +1,6 @@
 import operate from './operate';
 
-const calculate = ((data, buttonName) => {
-  let {total, next, operation} = data;
-
+const calculate = (({total,next,operation}, buttonName) => {
   if (total === 'ERROR') {
     total = '';
   }
@@ -66,6 +64,7 @@ const calculate = ((data, buttonName) => {
       if (next.indexOf('.') !== -1 && buttonName==='.'){
         break;
       }
+      // eslint-disable-next-line
     case '0': 
     case '1':
     case '2':
