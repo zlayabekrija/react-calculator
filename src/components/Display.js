@@ -1,10 +1,14 @@
-import React     from 'react';
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Display = ({total, next, operation}) => {
   const res = total === '' ? '0' : total;
   const ops = operation === '=' ? '' : operation;
-  return (<div className="display">{res} {ops} {next}</div>)
+  return (
+    <div className="display">
+      {res} {ops} {next}
+    </div>
+  );
 };
 
 Display.defaultProps = {total: '0'};

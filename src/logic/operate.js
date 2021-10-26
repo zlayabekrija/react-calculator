@@ -1,4 +1,4 @@
-import Big   from 'big.js';
+import Big from 'big.js';
 
 const operate = (numberOne, numberTwo, operation) => {
   numberOne = Big(numberOne);
@@ -15,7 +15,6 @@ const operate = (numberOne, numberTwo, operation) => {
       return numberOne.times(numberTwo).valueOf();
     case '/':
     case '%':
-      console.log(numberTwo.valueOf());
       if (numberTwo.valueOf() === '0') {
         return 'ERROR';
       }

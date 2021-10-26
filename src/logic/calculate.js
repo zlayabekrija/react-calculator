@@ -1,18 +1,18 @@
+import {operations} from '../utilities/utility';
 import operate from './operate';
 
-const calculate = (({total,next,operation}, buttonName) => {
+const calculate = ({total, next, operation}, buttonName) => {
   if (total === 'ERROR') {
     total = '';
   }
-
-  if (operation === '=' && ['0','1','2','3','4','5','6','7','8','9'].includes(buttonName)) {
+  if (operation === '=' && !isNaN(Number(buttonName))) {
     total = '';
     next = '';
     operation = '';
-  } else if (operation === '=' && ['%','+','-','X','/'].includes(buttonName)) {
+  } else if (operation === '=' && operations.includes(buttonName)) {
     operation = buttonName;
   }
-  
+
   switch (buttonName) {
     case 'AC':
       total = '';
@@ -30,14 +30,15 @@ const calculate = (({total,next,operation}, buttonName) => {
     case 'X':
     case '-':
     case '/':
-      if (operation === '' && next === ''){
+      if (operation === '' && next === '') {
         operation = buttonName;
       }
-      if (next !== ''){
+      if (next !== '') {
         total = Number(total);
         next = Number(next);
-        Number(operate(total, next, operation)) % 1 === 0 ? total = operate(total, next, operation):
-          total = Number(operate(total, next, operation)).toFixed(6).toString();
+        Number(operate(total, next, operation)) % 1 === 0
+          ? (total = operate(total, next, operation))
+          : (total = Number(operate(total, next, operation)).toFixed(6).toString());
         if (isNaN(total)) {
           total = 'ERROR';
         }
@@ -46,10 +47,11 @@ const calculate = (({total,next,operation}, buttonName) => {
       next = '';
       break;
     case '=':
-      if (next !== ''){
+      if (next !== '') {
         total = Number(total);
-        Number(operate(total, next, operation)) % 1 === 0 ? total = operate(total, next, operation):
-         total = Number(operate(total, next, operation)).toFixed(6).toString();
+        Number(operate(total, next, operation)) % 1 === 0
+          ? (total = operate(total, next, operation))
+          : (total = Number(operate(total, next, operation)).toFixed(6).toString());
       }
       if (isNaN(total)) {
         total = 'ERROR';
@@ -58,14 +60,14 @@ const calculate = (({total,next,operation}, buttonName) => {
       next = '';
       break;
     case '.':
-      if (total.indexOf('.') !== -1 && buttonName==='.' && next === ''){
+      if (total.indexOf('.') !== -1 && buttonName === '.' && next === '') {
         break;
       }
-      if (next.indexOf('.') !== -1 && buttonName==='.'){
+      if (next.indexOf('.') !== -1 && buttonName === '.') {
         break;
       }
-      // eslint-disable-next-line
-    case '0': 
+    // eslint-disable-next-line
+    case '0':
     case '1':
     case '2':
     case '3':
@@ -74,16 +76,15 @@ const calculate = (({total,next,operation}, buttonName) => {
     case '6':
     case '7':
     case '8':
-    case '9': 
-  
-      if (total[0] === '0' && total[1] !== '.' && total.length > 0){
+    case '9':
+      if (total[0] === '0' && total[1] !== '.' && total.length > 0) {
         total = buttonName;
-      } else if (next[0] === '0' && next[1] !== '.' && next.length > 0){
+      } else if (next[0] === '0' && next[1] !== '.' && next.length > 0) {
         next = buttonName;
       } else {
         next += buttonName;
       }
-      if (operation === ''){
+      if (operation === '') {
         total += next;
         next = '';
       }
@@ -92,6 +93,6 @@ const calculate = (({total,next,operation}, buttonName) => {
       break;
   }
   return {total, next, operation};
-});
+};
 
 export default calculate;
